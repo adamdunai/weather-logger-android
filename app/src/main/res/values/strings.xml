@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Weather Logger</string>
+
+    <string name="log_list_title">Weather Log</string>
+    <string name="log_list_save_button">Save</string>
 </resources>
