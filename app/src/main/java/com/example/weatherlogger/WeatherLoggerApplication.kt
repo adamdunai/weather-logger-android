@@ -1,12 +1,12 @@
 package com.example.weatherlogger
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import dagger.hilt.android.HiltAndroidApp
 import logcat.AndroidLogcatLogger
 import logcat.LogPriority
 
 @HiltAndroidApp
-class WeatherLoggerApplication : Application() {
+class WeatherLoggerApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
 
