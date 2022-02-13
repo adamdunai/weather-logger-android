@@ -15,15 +15,15 @@ interface WeatherDao {
 
     @Query(
         "SELECT id, temperature, feelsLike, description, humidity, windSpeed, dateTimeInMillis" +
-                " FROM Weathers" +
-                " ORDER BY id DESC"
+            " FROM Weathers" +
+            " ORDER BY id DESC"
     )
     fun getWeatherList(): Flow<List<WeatherLogTuple>>
 
     @Query(
         "SELECT *" +
-                " FROM Weathers" +
-                " WHERE id = :id"
+            " FROM Weathers" +
+            " WHERE id = :id"
     )
     suspend fun getWeatherDetails(id: Long): WeatherDataModel
 }
