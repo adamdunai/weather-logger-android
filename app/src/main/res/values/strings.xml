@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Weather Logger</string>
+
+    <string name="log_list_title">Weather Log</string>
+    <string name="log_list_save_button">Save</string>
+
+    <string name="log_item_temperature" translatable="false">%d°C</string>
+    <string name="log_item_feels_like">feels like %d°C</string>
+    <string name="log_item_humidity">humidity: %d%%</string>
+    <string name="log_item_wind_speed">wind: %.1f m/s</string>
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav_graph"
+    app:startDestination="@id/logListFragment">
+
+    <fragment
+        android:id="@+id/logListFragment"
+        android:name="com.example.weatherlogger.main.ui.LogListFragment"
+        android:label="LogListFragment"
+        tools:layout="@layout/fragment_log_list" />
+
+</navigation>
