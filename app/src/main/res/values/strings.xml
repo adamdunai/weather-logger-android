@@ -4,6 +4,7 @@
 
     <string name="log_list_title">Weather Log</string>
     <string name="log_list_save_button">Save</string>
+    <string name="log_list_error">Something went wrong</string>
 
     <string name="log_item_temperature" translatable="false">%d°C</string>
     <string name="log_item_feels_like">feels like %d°C</string>
