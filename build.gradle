@@ -29,6 +29,7 @@ buildscript {
         okHttpVersion = '4.9.3'
         recyclerviewVersion = '1.2.1'
         retrofitVersion = '2.9.0'
+        roomVersion = '2.4.1'
         supportLibraryVersion = '1.4.1'
     }
 
