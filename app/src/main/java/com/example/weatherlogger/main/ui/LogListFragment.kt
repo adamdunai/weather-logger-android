@@ -1,5 +1,7 @@
 package com.example.weatherlogger.main.ui
 
+import android.Manifest
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,16 +18,27 @@ import com.example.weatherlogger.main.model.LogItemUiModel
 import com.example.weatherlogger.main.model.LogListUiState
 import com.example.weatherlogger.main.ui.adapter.LogAdapter
 import com.example.weatherlogger.main.ui.viewmodel.LogListViewModel
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.tasks.CancellationTokenSource
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import permissions.dispatcher.NeedsPermission
+import permissions.dispatcher.OnNeverAskAgain
+import permissions.dispatcher.OnPermissionDenied
+import permissions.dispatcher.RuntimePermissions
 
 @AndroidEntryPoint
+@RuntimePermissions
 class LogListFragment : BaseFragment() {
 
     private lateinit var logAdapter: LogAdapter
     private lateinit var progressDrawable: CircularProgressDrawable
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var cancellationToken: CancellationTokenSource
 
     private var _binding: FragmentLogListBinding? = null
     private val binding get() = _binding!!
@@ -50,6 +63,7 @@ class LogListFragment : BaseFragment() {
             strokeWidth = 5f
             start()
         }
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(getMainActivity())
 
         with(binding) {
             with(logRecyclerView) {
@@ -58,7 +72,7 @@ class LogListFragment : BaseFragment() {
             }
 
             saveFloatingActionButton.setOnClickListener {
-                fetchWeatherData()
+                fetchWeatherDataWithPermissionCheck()
             }
         }
 
@@ -90,9 +104,21 @@ class LogListFragment : BaseFragment() {
         }
     }
 
-    private fun fetchWeatherData() {
-        // TODO
-        viewModel.fetchWeatherData(47.5559396, 19.0166011)
+    override fun onStart() {
+        super.onStart()
+        cancellationToken = CancellationTokenSource()
+    }
+
+    @SuppressLint("MissingPermission")
+    @NeedsPermission(Manifest.permission.ACCESS_COARSE_LOCATION)
+    fun fetchWeatherData() {
+        fusedLocationClient.getCurrentLocation(
+            LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY,
+            cancellationToken.token
+        )
+            .addOnSuccessListener { location ->
+                viewModel.fetchWeatherData(location.latitude, location.longitude)
+            }
     }
 
     private fun updateLogRecyclerViewItem(newList: List<LogItemUiModel>) {
@@ -120,8 +146,35 @@ class LogListFragment : BaseFragment() {
         }
     }
 
+    // TODO use not deprecated solution
+    @Suppress("Deprecation")
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        onRequestPermissionsResult(requestCode, grantResults)
+    }
+
+    @OnPermissionDenied(Manifest.permission.ACCESS_COARSE_LOCATION)
+    @OnNeverAskAgain(Manifest.permission.ACCESS_COARSE_LOCATION)
+    fun onLocationPermissionDenied() {
+        Snackbar.make(
+            binding.root,
+            R.string.log_list_location_permission_denied,
+            Snackbar.LENGTH_LONG
+        ).show()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onStop() {
+        super.onStop()
+        cancellationToken.cancel()
     }
 }
