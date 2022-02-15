@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.example.weatherlogger.database.model.WeatherDataModel
 import com.example.weatherlogger.database.tuple.WeatherLogTuple
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface WeatherDao {
@@ -17,7 +18,7 @@ interface WeatherDao {
             " FROM Weathers" +
             " ORDER BY id DESC"
     )
-    suspend fun getWeatherList(): List<WeatherLogTuple>
+    fun getWeatherList(): Flow<List<WeatherLogTuple>>
 
     @Query(
         "SELECT *" +

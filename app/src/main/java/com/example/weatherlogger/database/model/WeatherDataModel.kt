@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Weathers")
 data class WeatherDataModel(
-    @PrimaryKey val id: Long = 0,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val temperature: Int,
     val feelsLike: Int,
     val description: String,
