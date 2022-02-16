@@ -23,6 +23,7 @@ android {
         multiDexEnabled true
 
         buildConfigField "String", "BASE_URL", doubleQuotes("https://api.openweathermap.org/data/2.5/")
+        buildConfigField "String", "BASE_PHOTO_URL", doubleQuotes("https://openweathermap.org/img/wn/")
         buildConfigField "String", "OPENWEATHER_API_KEY", doubleQuotes(OPENWEATHER_API_KEY)
         buildConfigField "int", "DATABASE_VERSION", '1'
         buildConfigField "String", "DATABASE_NAME", doubleQuotes("default")
