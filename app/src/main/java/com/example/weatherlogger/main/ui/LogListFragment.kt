@@ -16,6 +16,7 @@ import com.example.weatherlogger.R
 import com.example.weatherlogger.databinding.FragmentLogListBinding
 import com.example.weatherlogger.main.model.LogItemUiModel
 import com.example.weatherlogger.main.model.LogListUiState
+import com.example.weatherlogger.main.navigation.MainNavigator
 import com.example.weatherlogger.main.ui.adapter.LogAdapter
 import com.example.weatherlogger.main.ui.viewmodel.LogListViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -30,6 +31,7 @@ import permissions.dispatcher.NeedsPermission
 import permissions.dispatcher.OnNeverAskAgain
 import permissions.dispatcher.OnPermissionDenied
 import permissions.dispatcher.RuntimePermissions
+import javax.inject.Inject
 
 @AndroidEntryPoint
 @RuntimePermissions
@@ -43,6 +45,9 @@ class LogListFragment : BaseFragment() {
     private var _binding: FragmentLogListBinding? = null
     private val binding get() = _binding!!
     private val viewModel: LogListViewModel by viewModels()
+
+    @Inject
+    lateinit var navigator: MainNavigator
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +63,13 @@ class LogListFragment : BaseFragment() {
 
         setTitle(R.string.log_list_title)
 
-        logAdapter = LogAdapter(getMainActivity())
+        logAdapter = LogAdapter(getMainActivity()).apply {
+            onItemClickListener = object : LogAdapter.OnItemClickListener {
+                override fun onItemClicked(logId: Long) {
+                    navigator.navigateToDetails(logId)
+                }
+            }
+        }
         progressDrawable = CircularProgressDrawable(getMainActivity()).apply {
             strokeWidth = 5f
             start()

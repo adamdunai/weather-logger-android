@@ -9,12 +9,15 @@ import com.example.weatherlogger.R
 import com.example.weatherlogger.common.ui.adapter.BindableBaseRecycleViewAdapter
 import com.example.weatherlogger.databinding.ViewLogItemBinding
 import com.example.weatherlogger.main.model.LogItemUiModel
+import com.example.weatherlogger.main.ui.adapter.LogAdapter
 
 class LogItemView :
     ConstraintLayout,
     BindableBaseRecycleViewAdapter.Bindable<LogItemUiModel> {
 
     private val binding = ViewLogItemBinding.inflate(LayoutInflater.from(context), this)
+
+    var onItemClickListener: LogAdapter.OnItemClickListener? = null
 
     constructor(context: Context) : super(context)
 
@@ -44,6 +47,10 @@ class LogItemView :
             windSpeedTextView.text =
                 context.getString(R.string.log_item_wind_speed, model.windSpeed)
             dateTimeTextView.text = model.dateTime
+        }
+
+        setOnClickListener {
+            onItemClickListener?.onItemClicked(model.id)
         }
     }
 }
