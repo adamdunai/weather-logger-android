@@ -3,6 +3,7 @@ package com.example.weatherlogger.data
 import com.example.weatherlogger.api.ApiClient
 import com.example.weatherlogger.common.mapper.toDataModel
 import com.example.weatherlogger.database.AppDatabase
+import com.example.weatherlogger.database.model.WeatherDataModel
 import com.example.weatherlogger.database.tuple.WeatherLogTuple
 import kotlinx.coroutines.flow.Flow
 import java.time.Instant
@@ -27,4 +28,7 @@ class WeatherRepository @Inject constructor(
             )
         )
     }
+
+    suspend fun getDetails(logId: Long): WeatherDataModel =
+        appDatabase.weatherDao().getWeatherDetails(logId)
 }
