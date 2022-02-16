@@ -26,15 +26,17 @@ buildscript {
         lifecycleVersion = '2.4.0'
         logcatVersion = '0.1'
         materialVersion = '1.5.0'
-        swipeRefreshLayoutVersion = "1.1.0"
         moshiVersion = '1.12.0'
         multiDexVersion = '2.0.1'
         navigationVersion = '2.3.4'
         okHttpVersion = '4.9.3'
+        permissionDispatcherVersion = '4.9.1'
+        playServicesLocationVersion = '19.0.1'
         recyclerviewVersion = '1.2.1'
         retrofitVersion = '2.9.0'
         roomVersion = '2.4.1'
         supportLibraryVersion = '1.4.1'
+        swipeRefreshLayoutVersion = '1.1.0'
     }
 
     repositories {
