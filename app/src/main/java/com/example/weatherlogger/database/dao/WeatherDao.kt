@@ -14,7 +14,7 @@ interface WeatherDao {
     suspend fun insertWeather(model: WeatherDataModel)
 
     @Query(
-        "SELECT id, temperature, feelsLike, description, humidity, windSpeed, dateTimeInMillis" +
+        "SELECT id, temperature, feelsLike, description, dateTimeInMillis" +
             " FROM Weathers" +
             " ORDER BY id DESC"
     )

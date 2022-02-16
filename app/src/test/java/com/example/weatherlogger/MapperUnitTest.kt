@@ -67,8 +67,6 @@ class MapperUnitTest {
             temperature = 3,
             feelsLike = 4,
             description = "few clouds",
-            humidity = 58,
-            windSpeed = 3.75,
             dateTimeInMillis = 1644776336449L
         )
 
@@ -78,8 +76,6 @@ class MapperUnitTest {
                 temperature = 3,
                 feelsLike = 4,
                 description = "few clouds",
-                humidity = 58,
-                windSpeed = 3.75,
                 dateTime = "2022. 02. 13. 19:18:56"
             ),
             tuple.toUiModel()

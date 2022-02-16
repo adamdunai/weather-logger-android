@@ -5,7 +5,5 @@ data class LogItemUiModel(
     val temperature: Int,
     val feelsLike: Int,
     val description: String,
-    val humidity: Int,
-    val windSpeed: Double,
     val dateTime: String,
 )

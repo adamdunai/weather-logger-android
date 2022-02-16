@@ -43,9 +43,6 @@ class LogItemView :
             feelsLikeTextView.text =
                 context.getString(R.string.log_item_feels_like, model.feelsLike)
             descriptionTextView.text = model.description
-            humidityTextView.text = context.getString(R.string.log_item_humidity, model.humidity)
-            windSpeedTextView.text =
-                context.getString(R.string.log_item_wind_speed, model.windSpeed)
             dateTimeTextView.text = model.dateTime
         }
 

@@ -9,8 +9,6 @@
 
     <string name="log_item_temperature" translatable="false">%d°C</string>
     <string name="log_item_feels_like">feels like %d°C</string>
-    <string name="log_item_humidity">humidity: %d%%</string>
-    <string name="log_item_wind_speed">wind: %.1f m/s</string>
 
     <string name="details_title">Details</string>
     <string name="details_icon_content_description">Weather icon</string>

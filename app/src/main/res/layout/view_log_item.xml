@@ -35,31 +35,9 @@
         android:layout_marginVertical="@dimen/margin_padding_size_small"
         android:layout_marginStart="@dimen/margin_padding_size_medium"
         android:layout_marginLeft="@dimen/margin_padding_size_medium"
-        app:layout_constraintStart_toEndOf="@id/temperatureTextView"
-        app:layout_constraintTop_toBottomOf="@id/feelsLikeTextView"
-        tools:text="light rain" />
-
-    <TextView
-        android:id="@+id/humidityTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/margin_padding_size_small"
-        android:layout_marginStart="@dimen/margin_padding_size_medium"
-        android:layout_marginLeft="@dimen/margin_padding_size_medium"
         app:layout_constraintStart_toEndOf="@id/feelsLikeTextView"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="humidity: 93%" />
-
-    <TextView
-        android:id="@+id/windSpeedTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/margin_padding_size_small"
-        android:layout_marginStart="@dimen/margin_padding_size_medium"
-        android:layout_marginLeft="@dimen/margin_padding_size_medium"
-        app:layout_constraintStart_toEndOf="@id/descriptionTextView"
-        app:layout_constraintTop_toBottomOf="@id/humidityTextView"
-        tools:text="wind: 7.7m/s" />
+        tools:text="light rain" />
 
     <TextView
         android:id="@+id/dateTimeTextView"

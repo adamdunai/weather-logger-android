@@ -5,7 +5,5 @@ data class WeatherLogTuple(
     val temperature: Int,
     val feelsLike: Int,
     val description: String,
-    val humidity: Int,
-    val windSpeed: Double,
     val dateTimeInMillis: Long,
 )

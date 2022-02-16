@@ -15,8 +15,6 @@ fun WeatherLogTuple.toUiModel() =
         temperature = temperature,
         feelsLike = feelsLike,
         description = description,
-        humidity = humidity,
-        windSpeed = windSpeed,
         dateTime = LocalDateTime.ofInstant(
             Instant.ofEpochMilli(dateTimeInMillis),
             ZoneId.systemDefault()
